@@ -48,12 +48,20 @@ void resman_free(void *resource)
         free (res->next);
         // then set the before element's next on the next directly, 
         res->next = res->next->next;
-
     }
-
 }
 
 void resman_end()
-{
-    // TODO IMPLEMENT
+{  
+    resman_resource *res = context->list;
+    while (res != NULL)
+    {
+        // free all resources
+        resman_resource *next = res->next;
+        free(res->name);
+        free(res->ptr_to_res);
+        free(res);
+        res = next; 
+    }
+    free (context);
 }
