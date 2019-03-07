@@ -15,6 +15,7 @@ typedef struct resman_resource_t
 typedef struct resman_ctx_t
 {
     resman_resource *list;
+    int current_id;
 } resman_ctx;
 
 
