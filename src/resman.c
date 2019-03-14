@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
+#include "resman_types.h"
 #include "resman.h"
+
 
 static resman_ctx *context;
 
