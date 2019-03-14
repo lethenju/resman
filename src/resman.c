@@ -3,7 +3,6 @@
 #include "resman_types.h"
 #include "resman.h"
 
-
 static resman_ctx *context;
 
 void resman_init()
@@ -19,11 +18,12 @@ void *resman_alloc(char *name, int size)
     while (res != NULL)
         res = res->next;
     res = malloc(sizeof(resman_resource));
-    memset(res, 0, sizeof(resman_resource));
+    memset(res, NULL, sizeof(resman_resource));
     res->resource_id = context->current_id;
     res->resource_name = name;
     res->nb_bytes = size;
     res->ptr_to_res = malloc(size);
+    memset(res->ptr_to_res, NULL, size);
     context->current_id++;
     return res->ptr_to_res;
 }
