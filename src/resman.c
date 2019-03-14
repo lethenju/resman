@@ -23,7 +23,7 @@ void *resman_alloc(char *name, int size)
     res->resource_id = context->current_id;
     res->resource_name = name;
     res->nb_bytes = size;
-    res->ptr_to_res = malloc(sizeof(size));
+    res->ptr_to_res = malloc(size);
     context->current_id++;
     return res->ptr_to_res;
 }
