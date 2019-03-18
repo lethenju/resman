@@ -135,7 +135,7 @@ int resman_get_total_size_allocated()
         total_size += res->nb_bytes;
         res = res->next;
     }
-    return -1; 
+    return total_size;
 }
 
 void resman_end()
