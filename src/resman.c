@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "resman_types.h"
 #include "resman.h"
 
@@ -18,12 +19,12 @@ void *resman_alloc(char *name, int size)
     while (res != NULL)
         res = res->next;
     res = malloc(sizeof(resman_resource));
-    memset(res, NULL, sizeof(resman_resource));
+    memset(res, '\0', sizeof(resman_resource));
     res->resource_id = context->current_id;
     res->resource_name = name;
     res->nb_bytes = size;
     res->ptr_to_res = malloc(size);
-    memset(res->ptr_to_res, NULL, size);
+    memset(res->ptr_to_res, '\0', size);
     context->current_id++;
     return res->ptr_to_res;
 }
@@ -56,40 +57,75 @@ void resman_free(void *resource)
 
 void resman_print_resources()
 {
-    //TODO IMPLEMENT
+    resman_resource *res = context->list;
+    printf("== RESMAN RESOURCE DEBUG INFO == \n\n");
+    while (res != NULL)
+    {
+        printf("ID : %d | size : %d | name : %s \n", res->resource_id, 
+                                                   res->nb_bytes,
+                                                   res->resource_name );
+        res = res->next;
+    }
 }
 
 int resman_get_number_of_resources()
 {
-    //TODO IMPLEMENT
-    return 0;
+    resman_resource *res = context->list;
+    int nb_resource = 0;
+    while (res != NULL)
+    {
+        nb_resource++;
+        res = res->next;
+    }
+    return nb_resource;
 }
 
 
 int resman_get_id_of_resource(char* name)
 {
-    //TODO IMPLEMENT
-    return 0;
+    resman_resource *res = context->list;
+    while (res != NULL)
+    {
+        if (!strcmp(res->resource_name, name)) return res->resource_id;
+        res = res->next;
+    }
+    return -1; 
 }
 
 
 char* resman_get_name_of_resource(int id)
 {
-    //TODO IMPLEMENT
-    return "";
+    resman_resource *res = context->list;
+    while (res != NULL)
+    {
+        if (res->resource_id == id) return res->resource_name;
+        res = res->next;
+    }
+    return NULL; 
 }
 
 
 int resman_get_size_of_resource(int id)
 {
-    //TODO IMPLEMENT
-    return 0;
+    resman_resource *res = context->list;
+    while (res != NULL)
+    {
+        if (res->resource_id == id) return res->nb_bytes;
+        res = res->next;
+    }
+    return -1; 
 }
 
 int resman_get_total_size_allocated()
 {
-    //TODO IMPLEMENT
-    return 0;
+    resman_resource *res = context->list;
+    int total_size = 0;
+    while (res != NULL)
+    {
+        total_size += res->nb_bytes;
+        res = res->next;
+    }
+    return -1; 
 }
 
 void resman_end()
