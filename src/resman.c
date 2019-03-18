@@ -53,6 +53,45 @@ void resman_free(void *resource)
     }
 }
 
+
+void resman_print_resources()
+{
+    //TODO IMPLEMENT
+}
+
+int resman_get_number_of_resources()
+{
+    //TODO IMPLEMENT
+    return 0;
+}
+
+
+int resman_get_id_of_resource(char* name)
+{
+    //TODO IMPLEMENT
+    return 0;
+}
+
+
+char* resman_get_name_of_resource(int id)
+{
+    //TODO IMPLEMENT
+    return "";
+}
+
+
+int resman_get_size_of_resource(int id)
+{
+    //TODO IMPLEMENT
+    return 0;
+}
+
+int resman_get_total_size_allocated()
+{
+    //TODO IMPLEMENT
+    return 0;
+}
+
 void resman_end()
 {  
     resman_resource *res = context->list;
