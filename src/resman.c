@@ -31,7 +31,7 @@ void *resman_alloc(char *name, int size)
     
     memset(res, '\0', sizeof(resman_resource));
     res->resource_id = context->current_id;
-    res->resource_name = name;
+    res->resource_name = strdup(name);
     res->nb_bytes = size;
     res->ptr_to_res = malloc(size);
     memset(res->ptr_to_res, '\0', size);
