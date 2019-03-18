@@ -9,16 +9,26 @@ static resman_ctx *context;
 void resman_init()
 {
     context = malloc(sizeof(resman_ctx));
-    memset(context, 0, sizeof(resman_ctx));
+    memset(context, '\0', sizeof(resman_ctx));
     context->current_id = 0;
 }
 
 void *resman_alloc(char *name, int size)
 {
     resman_resource *res = context->list;
-    while (res != NULL)
+    if (res==NULL) // first one
+    {
+        context->list = malloc(sizeof(resman_resource));
+        res = context->list;
+    } 
+    else
+    {
+        while (res->next != NULL)
+            res = res->next;
+        res->next = malloc(sizeof(resman_resource));
         res = res->next;
-    res = malloc(sizeof(resman_resource));
+    }
+    
     memset(res, '\0', sizeof(resman_resource));
     res->resource_id = context->current_id;
     res->resource_name = name;
@@ -62,8 +72,8 @@ void resman_print_resources()
     while (res != NULL)
     {
         printf("ID : %d | size : %d | name : %s \n", res->resource_id, 
-                                                   res->nb_bytes,
-                                                   res->resource_name );
+                                                     res->nb_bytes,
+                                                     res->resource_name );
         res = res->next;
     }
 }
