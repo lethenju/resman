@@ -28,19 +28,19 @@ int resman_get_number_of_resources();
 
 /** Gets the id of a given resource name
  *  @param name : the name of the resource 
- *  @returns int : the id of the resource
+ *  @returns int : the id of the resource or -1 if the resource doesnt exist
  */ 
 int resman_get_id_of_resource(char* name);
 
 /** Gets the name of a given resource id
  *  @param id : the id of the resource
- *  @returns char* : the name of the resource
+ *  @returns char* : the name of the resource or NULL if the resource doesnt exist
  */ 
 char* resman_get_name_of_resource(int id);
 
 /** Gets the size of a resource in bytes
  *  @param id : the id of the resource
- *  @returns int : the size of the resource in bytes
+ *  @returns int : the size of the resource in bytes or -1 if the resource doesnt exist
  */ 
 int resman_get_size_of_resource(int id);
 
