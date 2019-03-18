@@ -26,7 +26,11 @@ int main(int argc, char* argv[])
         sprintf(&name, "Alloc number %d", i);
         allocate_strings(name);
     }
-    printf("allocate done!\nDeleting all\n");
+    resman_print_resources();
+
+    printf("Total allocated size : %d\n", resman_get_total_size_allocated());
+
+    printf("Deleting all\n");
     resman_end();
     printf("Done\n");
     return 0;
