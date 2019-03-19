@@ -1,4 +1,4 @@
-# Makefile for Winman source and examples
+# Makefile for Resman source and examples
 # MIT License
 # Julien LE THENO
 
