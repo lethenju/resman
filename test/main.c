@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "resman.h"
+#include <resman.h>
 
 void allocate_strings(char* name)
 {
