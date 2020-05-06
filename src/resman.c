@@ -15,6 +15,10 @@ void resman_init()
 
 void *resman_alloc(char *name, int size)
 {
+    if (context == NULL) {
+        printf("Resman was not initialized !\n");
+        exit(-1);
+    }
     resman_resource *res = context->list;
     if (res==NULL) // first one
     {
